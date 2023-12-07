@@ -27,14 +27,17 @@ func main() {
 	for i := 0; i < len(dataArr); i++ {
 		fmt.Print(dataArr[i], "\n")
 
-		for k := 0; k < len(nameArr); k++ {
-			dataStr = strings.Replace(dataArr[i], nameArr[k], fmt.Sprint(k+1), -1)
-
-			dataArr = strings.Index(dataArr[i], nameArr[i])
-		}
-
 		for j := 0; j < len(dataArr[i]); j++ {
 			fmt.Print(string(dataArr[i][j]), "\n")
+			if strings.Contains("otfsen", string(dataArr[i][j])) {
+				for k := 0; k < len(nameArr); k++ {
+					if strings.HasPrefix(dataArr[i][j:], nameArr[k]) {
+						total += 10 * (k + 1)
+						fmt.Print("first name: ", fmt.Sprint(k+1), "\n")
+						break
+					}
+				}
+			}
 			if dataArr[i][j] < 48 || dataArr[i][j] > 57 {
 				continue
 			}
